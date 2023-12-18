@@ -34,7 +34,7 @@ const Cart = (props) => {
       ))}
     </ul>
   );
-  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = Math.round(cartCtx.totalAmount * 100)/100;
   const hasItem = cartCtx.items.length > 0;
   const modalActions = (
     <div className={classes.actions}>
@@ -75,7 +75,7 @@ const Cart = (props) => {
       {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>{totalAmount}</span>
+        <span>${totalAmount.toFixed(2)}</span>
       </div>
       {isCheckout && (
         <Checkout onCancel={props.onClose} onConfirm={submitOrderHandler} />
